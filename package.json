@@ -1,0 +1,27 @@
+{
+    "name": "pren-lvp",
+    "version": "0.0.1",
+    "description": "A level-up API project for PREN",
+    "main": "index.js",
+    "author": "Chike A. Ozulumba",
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+        "debug": "^4.1.1",
+        "dotenv": "^8.1.0",
+        "express": "^4.17.1",
+        "sequelize": "^5.18.1"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.5.5",
+        "@babel/core": "^7.5.5",
+        "@babel/node": "^7.5.5",
+        "@babel/preset-env": "^7.5.5",
+        "eslint": "^6.3.0",
+        "eslint-config-airbnb-base": "^14.0.0",
+        "eslint-plugin-import": "^2.18.2"
+    },
+    "scripts": {
+        "dev": "babel-node index.js"
+    }
+}
