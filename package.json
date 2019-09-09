@@ -41,6 +41,7 @@
     "faker": "^4.1.0",
     "husky": "^3.0.5",
     "jest": "^24.9.0",
+    "sequelize-cli": "^5.5.1",
     "sinon": "^7.4.2",
     "sinon-express-mock": "^2.2.1",
     "supertest": "^4.0.2",
@@ -50,12 +51,7 @@
     "clean": "rm -rf build && mkdir build",
     "build:prod": "babel -d ./build ./src -s",
     "dev": "babel-node ./src/index.js",
-    "db:reset": "sequelize db:migrate:undo:all; sequelize db:migrate;",
-    "test": "NODE_ENV=test yarn db:reset; NODE_ENV=test jest --ci --verbose --forceExit --detectOpenHandles --maxWorkers=10"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn test"
-    }
+    "db:reset": "pwd; sequelize db:migrate:undo:all; sequelize db:migrate;",
+    "test": "NODE_ENV=test yarn db:reset; NODE_ENV=test jest --ci --verbose --forceExit --detectOpenHandles --maxWorkers=10 --passWithNoTests"
   }
 }

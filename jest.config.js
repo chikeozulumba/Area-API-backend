@@ -32,12 +32,16 @@ module.exports = {
   testPathIgnorePatterns: [
     '/node_modules/',
     '/__mocks__/',
-    '/build/',
+    '<rootDir>/build/',
   ],
   transformIgnorePatterns: [
     '/node_modules/',
   ],
   setupFiles: [
     '<rootDir>/src/config/test.setup.js',
+  ],
+  testEnvironment: 'node',
+  modulePathIgnorePatterns: [
+    '<rootDir>/build',
   ],
 };

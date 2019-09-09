@@ -5,21 +5,20 @@ node_js:
 
 services:
   - postgresql
+
 addons:
   postgresql: "9.6"
 
 before_script:
-  - psql -c 'create database "$DATABASE_NAME";' -U postgres
-
-env:
-  - NODE_ENV=test
+  - psql -c 'create database "area-api-db";' -U postgres
 
 cache:
  directories:
    - node_modules
 
 script:
-  - npm test
+  - npm install
+  - npm run test
 
 deploy:
   provider: heroku
