@@ -11,8 +11,6 @@ export const validationMiddleware = (schema) => (req, res, next) => {
   } else {
     const { details } = error;
     const message = details.map((i) => i.message).join('\n ');
-
-    console.log('error', message);
     res.status(422).json({ error: message });
   }
 };

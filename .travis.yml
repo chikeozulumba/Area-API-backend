@@ -1,0 +1,32 @@
+language: node_js
+
+node_js:
+ - "10"
+
+services:
+  - postgresql
+addons:
+  postgresql: "9.6"
+
+before_script:
+  - psql -c 'create database "$DATABASE_NAME";' -U postgres
+
+env:
+  - NODE_ENV=test
+
+cache:
+ directories:
+   - node_modules
+
+script:
+  - npm test
+
+deploy:
+  provider: heroku
+  app: area-api-dev
+  on:
+    condition: $TRAVIS_BRANCH == develop
+    repo: chikeozulumba/Area-API
+    branch: develop
+  api_key:
+    secure: $HEROKU_AUTH
