@@ -1,4 +1,4 @@
-import { Joi } from '@hapi/joi';
+import Joi from '@hapi/joi';
 
 export const REGISTER = {
   fullName: Joi

@@ -1,5 +1,5 @@
 {
-    "exec": "npm run dev",
+    "exec": "yarn dev",
     "watch": ["./"],
     "ext": "js, css, json"
 }
