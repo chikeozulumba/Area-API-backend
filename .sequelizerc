@@ -8,7 +8,6 @@ const configFile = 'database.js';
 
 const databasePath = path.join(__dirname, rootFolder);
 
-console.log(path.join(databasePath, 'config', configFile))
 module.exports = {
   config: path.join(databasePath, 'config', configFile),
   'models-path': path.join(databasePath, 'database', 'models'),

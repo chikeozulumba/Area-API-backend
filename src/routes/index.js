@@ -6,7 +6,7 @@ const endpoints = [
 ];
 
 export default function initializeRoutes(app) {
-  return endpoints.map(({ path, default: endpoint }) => endpoint(Router).forEach((route) => {
+  endpoints.map(({ path, default: endpoint }) => endpoint(Router).forEach((route) => {
     app.use(path, route);
   }));
 }
