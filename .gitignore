@@ -1,4 +1,7 @@
 node_modules
-.env
 coverage
 build
+db_tables.json
+
+
+.env

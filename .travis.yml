@@ -5,6 +5,7 @@ node_js:
 
 services:
   - postgresql
+  - redis-server
 
 addons:
   postgresql: "9.6"
@@ -17,8 +18,8 @@ cache:
    - node_modules
 
 script:
-  - npm install
-  - npm run test
+  - yarn install
+  - yarn test
 
 deploy:
   provider: heroku
@@ -27,5 +28,15 @@ deploy:
     condition: $TRAVIS_BRANCH == develop
     repo: chikeozulumba/Area-API
     branch: develop
+  api_key:
+    secure: $HEROKU_AUTH
+
+deploy:
+  provider: heroku
+  app: area-api-prod
+  on:
+    condition: $TRAVIS_BRANCH == master
+    repo: chikeozulumba/Area-API
+    branch: master
   api_key:
     secure: $HEROKU_AUTH

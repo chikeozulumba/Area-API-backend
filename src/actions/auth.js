@@ -1,19 +1,20 @@
-import { OK, BAD_REQUEST } from 'http-status-codes';
+import { OK, BAD_REQUEST, ACCEPTED } from 'http-status-codes';
 import Auth from '../classes/Auth';
 import Crud from '../classes/Crud';
-import { handleSequelizeErrors } from '../utils';
+import { handleSequelizeErrors, validatePassword } from '../utils';
 
 const crud = new Crud();
-const { authorize } = new Auth();
+const PerformAuthentication = new Auth();
 
 export default {
+  user: null,
   async signUp(data) {
     try {
       let record = await crud.create(data);
       if (record) {
         record = record.get({ plain: true });
-        const token = await authorize(record);
-        return { status: OK, token, data: record };
+        const token = await PerformAuthentication.authorize(record);
+        return { status: OK, token };
       }
     } catch ({ errors }) {
       return {
@@ -22,8 +23,24 @@ export default {
       };
     }
   },
-  signIn() {
-    return true;
+  async signIn({ email, userName, password }) {
+    const signInQuery = this.signInQuery({ email, userName });
+    this.user = await crud.checkIfRecordExists(signInQuery);
+    if (!this.user || !await this.crossCheckPassword(password)) return this.handleFailedLogin();
+    return this.handleSuccessfulLogin();
   },
-  checkIfUserExists() {},
+  signInQuery({ email, userName }) {
+    return email ? { email } : { userName };
+  },
+  handleFailedLogin() {
+    return { status: BAD_REQUEST, message: 'Invalid email and password combination.' };
+  },
+  async handleSuccessfulLogin() {
+    const token = await PerformAuthentication.authorize({ id: this.user.id });
+    return { status: ACCEPTED, token };
+  },
+  async crossCheckPassword(password) {
+    if (!this.user) return false;
+    return validatePassword(password, this.user.password);
+  },
 };

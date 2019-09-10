@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.com/chikeozulumba/Area-API.svg?token=9wsQKmDVHpo139uyhhUn&branch=develop)](https://travis-ci.com/chikeozulumba/Area-API)

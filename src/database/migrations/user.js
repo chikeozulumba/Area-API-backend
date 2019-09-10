@@ -23,9 +23,15 @@ const TableFields = (Sequelize) => ({
     type: Sequelize.TEXT,
     allowNull: false,
   },
-  isEmailVerified: {
+  isAccountVerified: {
     type: Sequelize.ENUM,
     values: ['verified', 'pending'],
+    defaultValue: 'pending',
+    allowNull: false,
+  },
+  isProfileCompleted: {
+    type: Sequelize.ENUM,
+    values: ['complete', 'pending'],
     defaultValue: 'pending',
     allowNull: false,
   },

@@ -13,6 +13,8 @@ module.exports = {
     '<rootDir>/src/database/seeders',
     '<rootDir>/jest.config.js',
     '/__mocks__/',
+    '<rootDir>/src/index.js',
+    '<rootDir>/src/database/models/index.js',
   ],
   coverageReporters: [
     'json', 'lcov', 'text', 'clover',
