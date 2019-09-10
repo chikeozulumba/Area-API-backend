@@ -6,9 +6,13 @@ import Cors from 'cors';
 
 import { ENV } from './config';
 import initializeRoutes from './routes';
-import { ValidationErrors } from './api/middlewares';
+import { generateAppCSRF } from './api/middlewares';
+
+ENV.getEnvironmentVariables();
 
 const app = Express();
+
+app.set('title', 'Area-API');
 
 // Apply Middlewares
 app.use(BodyParser.json());
@@ -16,15 +20,9 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 app.use(Helmet.xssFilter());
 app.use(Helmet.frameguard());
 app.use(Cors());
+app.use(generateAppCSRF);
 
 // Initialize Routes
 initializeRoutes(app);
-
-app.use(ENV.debugURL);
-
-// Error and Logging Handler
-ENV.errorHandler(app);
-
-app.use(ValidationErrors);
 
 export default app;

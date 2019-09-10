@@ -24,9 +24,9 @@ module.exports = {
     migrationStorageTableSchema: 'custom_schema',
   },
   production: {
-    use_env_variable: 'DATABASE_URL',
+    use_env_variable: 'DATABASE_URL_PROD',
     dialect: 'postgres',
-    url: process.env.DATABASE_URL,
+    url: process.env.DATABASE_URL_PROD,
     migrationStorage: 'json',
     migrationStoragePath: 'db_tables.json',
     migrationStorageTableName: 'sequelize_meta',

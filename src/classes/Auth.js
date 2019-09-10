@@ -1,10 +1,11 @@
 import Crud from './Crud';
 import { signJWT } from '../utils';
+import { ENV } from '../config';
 
 export default class Auth extends Crud {
   constructor() {
     super();
-    this.userId = null;
+    this.id = null;
     this.model = 'User';
     this.init();
   }
@@ -12,11 +13,12 @@ export default class Auth extends Crud {
   init() {
   }
 
-  async user() {
-    return await this.DB[this.model].findOne({ where: { id: this.userId } });
+  async user(id = this.id) {
+    return await this.DB[this.model].findOne({ where: { id } });
   }
 
-  async authorize(data) {
-    return await signJWT(data) || null;
+  async authorize(data = {}) {
+    this.id = data.id;
+    return await signJWT({ key: await ENV.signData(), ...data }) || null;
   }
 }

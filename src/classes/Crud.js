@@ -6,11 +6,15 @@ export default class Crud {
     this.model = 'User';
   }
 
-  async findOne(params) {
-    return await DB[this.model].findAll({ where: { ...params } });
+  async findOne(params, options = {}) {
+    return await DB[this.model].findAll({ where: { ...params, ...options } });
   }
 
   async create(data) {
     return await DB[this.model].create(data);
+  }
+
+  async checkIfRecordExists(params, options = {}) {
+    return await DB[this.model].findOne({ where: { ...params, ...options } });
   }
 }

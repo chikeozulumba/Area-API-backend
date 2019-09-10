@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const rootFolder = process.env.NODE_ENV === 'production' ? 'dist' : 'src'; 
+const rootFolder = process.env.NODE_ENV === 'production' ? 'build' : 'src'; 
 const configFile = 'database.js';
 
 const databasePath = path.join(__dirname, rootFolder);
