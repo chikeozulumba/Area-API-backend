@@ -1,9 +1,6 @@
 import expect from 'expect';
 import AuthActions from '../auth';
 
-import Client from '../../config/redis';
-import DB from '../../database/models';
-
 describe('Auth Action', () => {
   test('Sign-up action', async () => {
     const data = {
@@ -16,9 +13,10 @@ describe('Auth Action', () => {
     expect(response.status).toEqual(400);
     expect(response.message).toEqual('Full Name field is of an incorrect value.');
   });
-});
 
-afterEach(async () => {
-  DB.sequelize.close();
-  await Client.RedisClient.quit();
+  test('Save password reset token action', async () => {
+    AuthActions.user = null;
+    const response = await AuthActions.savePasswordResetToken();
+    expect(response).toBeFalsy();
+  });
 });

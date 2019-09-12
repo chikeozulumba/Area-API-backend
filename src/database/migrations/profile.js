@@ -1,9 +1,8 @@
-const TableFields = (Sequelize) => ({
+export const TableFields = (Sequelize) => ({
   id: {
     primaryKey: true,
-    increments: true,
+    autoIncrement: true,
     type: Sequelize.INTEGER,
-    defaultValue: Sequelize.UUIDV4,
   },
   userId: {
     primaryKey: true,
@@ -40,9 +39,17 @@ const TableFields = (Sequelize) => ({
     type: Sequelize.STRING,
     allowNull: true,
   },
+  createdAt: {
+    allowNull: false,
+    type: Sequelize.DATE,
+  },
+  updatedAt: {
+    allowNull: false,
+    type: Sequelize.DATE,
+  },
 });
 
 export function up(queryInterface, Sequelize) {
-  return queryInterface.createTable('usersProfile', TableFields(Sequelize));
+  return queryInterface.createTable('users_profile', TableFields(Sequelize));
 }
-export function down(queryInterface) { return queryInterface.dropTable('usersProfile'); }
+export function down(queryInterface) { return queryInterface.dropTable('users_profile'); }

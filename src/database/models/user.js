@@ -11,5 +11,9 @@ export default (sequelize, DataTypes) => {
   User.beforeCreate(async (user) => {
     user.password = await User.generateHash(user.password);
   });
+
+  User.beforeUpdate(async (user) => {
+    user.password = await User.generateHash(user.password);
+  });
   return User;
 };
