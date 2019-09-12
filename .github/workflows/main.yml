@@ -1,0 +1,33 @@
+name: Area-API
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x]
+    services:
+      redis:
+        image: redis
+        ports:
+        - 6379:6379
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Setup database
+      uses: harmon758/postgresql-action@v1
+      with:
+        postgresql version: '11'
+        postgresql user: 'postgres'
+        postgresql password: 'chike'
+        postgresql db: 'area-api-db-test'
+    - name: Run tests
+      run: |
+        npm install
+        npm test
+      env:
+        CI: true
+        DATABASE_URL_TEST: postgresql://postgres:chike@localhost/area-api-db-test
