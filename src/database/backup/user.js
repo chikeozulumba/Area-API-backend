@@ -1,3 +1,4 @@
+
 const TableFields = (Sequelize) => ({
   id: {
     primaryKey: true,

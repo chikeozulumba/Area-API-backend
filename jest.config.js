@@ -15,6 +15,7 @@ module.exports = {
     '/__mocks__/',
     '<rootDir>/src/index.js',
     '<rootDir>/src/database/models/index.js',
+    '<rootDir>/src/database/backup',
   ],
   coverageReporters: [
     'json', 'lcov', 'text', 'clover',

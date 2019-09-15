@@ -1,4 +1,4 @@
-import { TableFields } from '../migrations/user';
+import { TableFields } from '../migrations/20190914000205-users';
 import { hashGenerator } from '../../utils';
 
 export default (sequelize, DataTypes) => {

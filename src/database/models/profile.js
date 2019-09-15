@@ -1,4 +1,4 @@
-import { TableFields } from '../migrations/profile';
+import { TableFields } from '../migrations/20190914000402-profile';
 
 export default (sequelize, DataTypes) => {
   const Profile = sequelize.define('Profile', TableFields(DataTypes), {
